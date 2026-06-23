@@ -63,7 +63,7 @@ img { max-width: 100%; display: block; }
   backdrop-filter: blur(18px) saturate(160%);
 }
 .nav-inner {
-  width: min(1220px, calc(100% - 40px));
+  width: min(1280px, calc(100% - 40px));
   min-height: 68px;
   margin: 0 auto;
   display: flex;
@@ -84,9 +84,9 @@ img { max-width: 100%; display: block; }
   line-height: 1;
 }
 .brand img {
-  width: 188px;
+  width: 226px;
   height: auto;
-  max-height: 38px;
+  max-height: 42px;
   object-fit: contain;
 }
 .brand:hover { text-decoration: none; }
@@ -124,7 +124,7 @@ img { max-width: 100%; display: block; }
   color: var(--ink);
 }
 .hero-inner {
-  width: min(1120px, calc(100% - 48px));
+  width: min(1280px, calc(100% - 48px));
   margin: 0 auto;
   text-align: center;
 }
@@ -140,17 +140,16 @@ img { max-width: 100%; display: block; }
 }
 h1, h2, h3 { margin: 0; line-height: 1.08; letter-spacing: 0; }
 h1 {
-  max-width: 1080px;
+  max-width: 1260px;
   margin: 0 auto;
   color: var(--ink);
   font-family: var(--display);
-  font-size: clamp(2.3rem, 3.05vw, 2.95rem);
+  font-size: clamp(2.16rem, 2.65vw, 2.62rem);
   font-weight: 760;
   line-height: 1.05;
   text-wrap: balance;
 }
-.title-line { display: block; }
-.title-line-3, .title-line-4 { font-size: 0.95em; }
+.title-line { display: block; white-space: nowrap; }
 h2 { max-width: 860px; font-family: var(--display); font-size: 3rem; font-weight: 760; }
 h3 { font-size: 1.2rem; }
 .hero-copy {
@@ -294,6 +293,16 @@ h3 { font-size: 1.2rem; }
   color: #08766f;
 }
 .button.compact { color: var(--blue-dark); background: #fff; border-color: var(--line); box-shadow: var(--shadow); }
+.hf-emoji {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 1.06rem;
+  line-height: 1;
+}
 .button svg, .release-item svg {
   width: 18px;
   height: 18px;
@@ -345,6 +354,7 @@ pre { overflow-x: auto; margin: 24px 0 0; padding: 22px; border-radius: var(--ra
   .nav-links { justify-content: flex-start; margin-top: 12px; }
   .hero { min-height: auto; padding: 56px 0 28px; }
   h1 { font-size: 2.48rem; }
+  .title-line { white-space: normal; }
   h2 { font-size: 2.35rem; }
   .intro-grid, .feature-grid, .stats-grid, .release-grid, .case-grid { grid-template-columns: 1fr; }
   .section-head.split { align-items: flex-start; flex-direction: column; }
@@ -353,7 +363,7 @@ pre { overflow-x: auto; margin: 24px 0 0; padding: 22px; border-radius: var(--ra
 
 @media (max-width: 620px) {
   .nav-inner, .wrap, .hero-inner { width: min(100% - 32px, 1180px); }
-  .brand img { width: 166px; }
+  .brand img { width: 190px; }
   .nav-brand-row { gap: 9px; }
   .nav-divider { height: 20px; }
   .nav-unit.kuaishou { height: 17px; }
