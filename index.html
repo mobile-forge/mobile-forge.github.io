@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MobileForge adapts mobile GUI agents without human annotations through MobileGym exploration, hierarchical feedback, and HiFPO step-level GRPO training.">
+  <meta name="description" content="MobileForge is an annotation-free adaptation system for mobile GUI agents, turning target-app interaction into executable curricula, hierarchical rollout feedback, and HiFPO policy updates.">
   <title>MobileForge</title>
   <link rel="icon" href="images/logo/mobileforge-mark.png">
   <link rel="stylesheet" href="css/mobileforge.css">
@@ -32,8 +32,8 @@
         <img class="nav-unit thu" src="images/brand/thu-logo.png" alt="Tsinghua University">
       </div>
       <div class="nav-links nav-sections">
-        <a href="#method">Method</a>
         <a href="#results">Results</a>
+        <a href="#method">Method</a>
         <a href="#release">Release</a>
         <a href="#citation">Citation</a>
       </div>
@@ -68,7 +68,7 @@
           <span>/</span>
           <a href="mailto:yongliu@iipc.zju.edu.cn">yongliu@iipc.zju.edu.cn</a>
         </p>
-        <p class="hero-copy">MobileForge adapts open mobile GUI agents through target-app exploration, automatic curriculum generation, hierarchical trajectory feedback, and step-level GRPO, without collecting task-specific human annotations.</p>
+        <p class="hero-copy">MobileForge turns real target-app interaction into executable curricula, hierarchical rollout feedback, and hint-contextualized step-level GRPO updates, enabling mobile GUI agents to adapt without human-written tasks, demonstrations, or reward labels.</p>
       </div>
       <div class="hero-actions">
         <a class="button primary" href="https://github.com/mobile-forge/MobileForge" target="_blank" rel="noopener"><svg><use href="#icon-github"></use></svg> Code Repo</a>
@@ -82,37 +82,18 @@
 
   <main>
     <section class="section intro-band">
-      <div class="wrap intro-grid">
-        <div>
-          <p class="section-kicker">Core Idea</p>
-          <h2>Turn unlabeled mobile interaction into an adaptation loop.</h2>
-        </div>
-        <p class="lead">MobileForge connects environment exploration, automatic task generation, hint-guided rollout, hierarchical critique, and step-level GRPO. The loop adapts open mobile GUI agents without collecting human annotations for each target task.</p>
-      </div>
-    </section>
-
-    <section id="method" class="section">
       <div class="wrap">
-        <div class="section-head">
-          <p class="section-kicker">Method</p>
-          <h2>MobileGym and HiFPO form the adaptation engine.</h2>
+        <div class="intro-grid">
+          <div>
+            <p class="section-kicker">Core Idea</p>
+            <h2>Annotation-free adaptation from real app interaction.</h2>
+          </div>
+          <p class="lead">MobileForge targets two gaps in mobile GUI learning: generated tasks and feedback are often detached from the target app, while sparse rollout outcomes are hard to turn into reusable step-level policy updates.</p>
         </div>
-        <figure class="paper-figure wide">
-          <img src="assets/paper/mobileforge-overview.png" alt="MobileForge overview pipeline">
-          <figcaption>MobileForge explores target apps, generates curricula, evaluates trajectories with hierarchical feedback, and trains GUI agents from step-level policy data.</figcaption>
+        <figure class="paper-figure teaser-figure">
+          <img src="assets/paper/mobileforge-teaser.png" alt="MobileForge teaser showing annotation-free adaptation for mobile GUI agents">
+          <figcaption>MobileForge grounds generated tasks in target-app interaction and converts hierarchical feedback into reusable policy-improvement signals.</figcaption>
         </figure>
-        <div class="feature-grid">
-          <article>
-            <img src="assets/paper/mobilegym.png" alt="MobileGym framework">
-            <h3>MobileGym</h3>
-            <p>Exploration, curriculum generation, and critic feedback provide the environment-side loop for mobile GUI adaptation.</p>
-          </article>
-          <article>
-            <img src="assets/paper/hifpo.png" alt="HiFPO optimization">
-            <h3>HiFPO</h3>
-            <p>Hint-guided multi-attempt rollout and step-level GRPO convert critic feedback into policy improvement.</p>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -121,19 +102,44 @@
         <div class="section-head split">
           <div>
             <p class="section-kicker">Results</p>
-            <h2>Higher AndroidWorld pass rates and improved MobileWorld transfer.</h2>
+            <h2>Main performance of MobileForge.</h2>
           </div>
           <a class="button compact" href="https://arxiv.org/abs/2606.19930" target="_blank" rel="noopener"><svg><use href="#icon-chart"></use></svg> Full paper</a>
         </div>
-        <figure class="paper-figure">
+        <figure class="paper-figure results-figure">
           <img src="assets/paper/main-performance.png" alt="MobileForge main performance table">
-          <figcaption>Main benchmark results from the paper, including AndroidWorld Pass@1/2/3 and MobileWorld success rate.</figcaption>
+          <figcaption>Main results from the paper: scaling with generated MobileForge tasks, in-domain AndroidWorld adaptation, and out-of-domain MobileWorld GUI-only generalization.</figcaption>
         </figure>
         <div class="stats-grid">
-          <article><span>67.24%</span><p>AndroidWorld Pass@1 with GUI-Owl-1.5-8B + MobileForge, 900 tasks.</p></article>
-          <article><span>77.59%</span><p>AndroidWorld Pass@3 with GUI-Owl-1.5-8B + MobileForge.</p></article>
-          <article><span>41.03%</span><p>MobileWorld success rate with GUI-Owl-1.5-8B + MobileForge.</p></article>
-          <article><span>67.24%</span><p>AndroidWorld Pass@3 with Qwen3-VL-8B + MobileForge, approaching the GUI-specialized base model.</p></article>
+          <article><span>67.24%</span><strong>ForgeOwl-8B Pass@1</strong><p>AndroidWorld in-domain adaptation with the MobileForge-adapted GUI-Owl-1.5-8B model.</p></article>
+          <article><span>77.59%</span><strong>ForgeOwl-8B Pass@3</strong><p>Strong AndroidWorld multi-attempt success after annotation-free adaptation.</p></article>
+          <article><span>41.03%</span><strong>MobileWorld SR</strong><p>Out-of-domain GUI-only success with no MobileWorld rollout used for training.</p></article>
+          <article><span>67.24%</span><strong>ForgeQwen3-8B Pass@3</strong><p>Qwen3-VL-8B after MobileForge adaptation, close to the closed-data GUI-specialized base model.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-kicker">Method</p>
+          <h2>MobileGym grounds experience; HiFPO turns feedback into updates.</h2>
+        </div>
+        <figure class="paper-figure wide overview-figure">
+          <img src="assets/paper/mobileforge-overview.png" alt="MobileForge overview pipeline">
+          <figcaption>MobileForge links target-app exploration, curriculum mining, rollout execution, hierarchical evaluation, and hint-contextualized policy optimization in one annotation-free adaptation loop.</figcaption>
+        </figure>
+        <div class="feature-grid">
+          <article>
+            <img src="assets/paper/mobilegym.png" alt="MobileGym framework">
+            <h3>MobileGym</h3>
+            <p>A unified mobile substrate that mines executable tasks from app interaction traces and evaluates completed rollouts with outcome labels, process feedback, and corrective hints.</p>
+          </article>
+          <article>
+            <img src="assets/paper/hifpo.png" alt="HiFPO optimization">
+            <h3>HiFPO</h3>
+            <p>A feedback-guided optimization loop that reuses hints across attempts, filters mastered tasks and noisy steps, and trains on hint-contextualized step-level GRPO samples.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -142,27 +148,27 @@
       <div class="wrap">
         <div class="section-head">
           <p class="section-kicker">Open Release</p>
-          <h2>Code, models, benchmark artifacts, and training data.</h2>
+          <h2>Artifacts for reproducing annotation-free adaptation.</h2>
         </div>
         <div class="release-grid">
-          <a class="release-item" href="https://github.com/mobile-forge/MobileForge" target="_blank" rel="noopener"><svg><use href="#icon-github"></use></svg><strong>Code</strong><span>Training code, model/data docs, and release manifests.</span></a>
-          <a class="release-item" href="https://huggingface.co/collections/lgy0404/mobileforge-models" target="_blank" rel="noopener"><svg><use href="#icon-model"></use></svg><strong>Models</strong><span>ForgeQwen3 and ForgeOwl checkpoints at 200/400/900-task scales.</span></a>
-          <a class="release-item" href="https://huggingface.co/datasets/lgy0404/mobileforge-training-data" target="_blank" rel="noopener"><svg><use href="#icon-data"></use></svg><strong>Training Data</strong><span>Step-level GRPO data and validation set for MobileForge training.</span></a>
-          <a class="release-item" href="https://huggingface.co/datasets/lgy0404/mobileforge-benchmark-results" target="_blank" rel="noopener"><svg><use href="#icon-chart"></use></svg><strong>Results</strong><span>AndroidWorld and MobileWorld logs, trajectories, and result mapping.</span></a>
+          <a class="release-item" href="https://github.com/mobile-forge/MobileForge" target="_blank" rel="noopener"><svg><use href="#icon-github"></use></svg><strong>Code</strong><span>Exploration, rollout, training, evaluation, and release manifests for the MobileForge pipeline.</span></a>
+          <a class="release-item" href="https://huggingface.co/collections/lgy0404/mobileforge-models" target="_blank" rel="noopener"><span class="release-emoji" aria-hidden="true">🤗</span><strong>Models</strong><span>ForgeQwen3 and ForgeOwl checkpoints adapted from automatically generated MobileForge tasks.</span></a>
+          <a class="release-item" href="https://huggingface.co/datasets/lgy0404/mobileforge-training-data" target="_blank" rel="noopener"><span class="release-emoji" aria-hidden="true">🤗</span><strong>Training Data</strong><span>Hint-contextualized step-level GRPO samples produced from MobileGym rollouts and critic feedback.</span></a>
+          <a class="release-item" href="https://huggingface.co/datasets/lgy0404/mobileforge-benchmark-results" target="_blank" rel="noopener"><svg><use href="#icon-chart"></use></svg><strong>Results</strong><span>AndroidWorld and MobileWorld evaluation logs, trajectories, and model-to-result mappings.</span></a>
         </div>
       </div>
     </section>
 
     <section class="section muted">
       <div class="wrap case-grid">
-        <figure class="paper-figure">
+        <figure class="paper-figure case-figure">
           <img src="assets/paper/case-study-hint.png" alt="MobileForge corrective hint case study">
-          <figcaption>Corrective feedback from MobileGym-Critic helps later attempts recover from earlier failures.</figcaption>
+          <figcaption>Corrective hints from MobileGym-Critic are reused by HiFPO to guide later attempts and training prompts.</figcaption>
         </figure>
         <div>
           <p class="section-kicker">Hierarchical Feedback</p>
-          <h2>Outcome feedback, process feedback, and corrective hints.</h2>
-          <p class="lead">The critic does not only say whether a trajectory succeeds. It identifies useful and harmful steps, generates evaluation hints, and provides training signals that HiFPO can reuse during later rollout and GRPO optimization.</p>
+          <h2>Making rollout feedback reusable.</h2>
+          <p class="lead">MobileGym-Critic separates final task outcome, step-level process quality, and corrective hints. HiFPO uses these signals to keep informative experience, discard mastered tasks, and condition GRPO on feedback from earlier attempts.</p>
         </div>
       </div>
     </section>
@@ -171,9 +177,9 @@
       <div class="wrap">
         <p class="section-kicker">Citation</p>
         <h2>Cite MobileForge</h2>
-        <pre><code>@article{liu2026mobileforge,
+<pre><code>@article{liu2026mobileforge,
   title={MobileForge: Annotation-Free Adaptation for Mobile GUI Agents with Hierarchical Feedback-Guided Policy Optimization},
-  author={Liu, Guangyi and Zhao, Pengxiang and Wu, Gao and Yin, Yiwen and Li, Mading and Liu, Liang and Liu, Congxiao and Qi, Zhang and Wang, Mengyan and Guo, Liang and others},
+  author={Liu, Guangyi and Zhao, Pengxiang and Wu, Gao and Yin, Yiwen and Li, Mading and Liu, Liang and Liu, Congxiao and Qi, Zhang and Wang, Mengyan and Guo, Liang and Liu, Yong},
   journal={arXiv preprint arXiv:2606.19930},
   year={2026}
 }</code></pre>
